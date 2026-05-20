@@ -118,49 +118,195 @@ header p {
   background: linear-gradient(to right, rgba(184, 90, 56, 0.2), transparent);
 }
 
-/* 視覺地圖展示區 */
-.map-showcase {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
+/* ==========================================
+   全新動態互動地圖樣式 (CSS/SVG)
+   ========================================== */
+.interactive-map-container {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 30px;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(74, 59, 50, 0.05);
   margin-top: 20px;
+  position: relative;
+  overflow: hidden;
 }
 
-@media (max-width: 768px) {
-  .map-showcase {
-    grid-template-columns: 1fr;
+.map-instruction {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 20px;
+  background: var(--accent-light);
+  padding: 8px 16px;
+  border-radius: 30px;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
+  border: 1px solid rgba(244, 162, 97, 0.2);
+}
+
+.map-svg-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  padding: 10px 0;
+}
+
+.route-svg {
+  width: 100%;
+  min-width: 800px;
+  height: auto;
+  display: block;
+}
+
+/* SVG 動畫與樣式 */
+.route-line-go {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawLine 3s ease-out forwards;
+}
+
+.route-line-return {
+  stroke-dasharray: 8;
+  animation: dashShift 30s linear infinite;
+}
+
+@keyframes drawLine {
+  to {
+    stroke-dashoffset: 0;
   }
 }
 
-.map-card {
-  background: var(--card-bg);
-  border-radius: var(--border-radius);
-  padding: 16px;
-  box-shadow: var(--shadow-soft);
+@keyframes dashShift {
+  to {
+    stroke-dashoffset: -1000;
+  }
+}
+
+.node-dot {
+  fill: var(--primary-color);
+  stroke: #ffffff;
+  stroke-width: 3;
   transition: var(--transition-smooth);
-  border: 1px solid rgba(74, 59, 50, 0.05);
 }
 
-.map-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-hover);
+.node-dot.accent {
+  fill: var(--accent-color);
 }
 
-.map-card h3 {
-  font-size: 1.1rem;
-  margin-bottom: 12px;
+.node-dot.success {
+  fill: var(--success-color);
+}
+
+/* 呼吸燈效果 */
+.node-pulse {
+  fill: var(--primary-color);
+  opacity: 0.3;
+  transform-origin: center;
+  animation: pulseGlow 2s infinite;
+  pointer-events: none;
+}
+
+.node-pulse.accent {
+  fill: var(--accent-color);
+}
+
+.node-pulse.success {
+  fill: var(--success-color);
+}
+
+@keyframes pulseGlow {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.node-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  fill: var(--secondary-color);
+  text-anchor: middle;
+  transition: var(--transition-smooth);
+}
+
+.node-label.main-dest {
+  font-size: 0.95rem;
+  font-weight: 700;
+  fill: var(--primary-color);
+}
+
+/* Hover 互動 */
+.map-node {
+  cursor: pointer;
+}
+
+.map-node:hover .node-dot {
+  transform: scale(1.3);
+  stroke-width: 4;
+}
+
+.map-node:hover .node-label {
+  fill: var(--primary-color);
+  font-weight: 700;
+}
+
+/* 懸停詳細資訊卡 */
+.interactive-detail-card {
+  margin-top: 30px;
+  background: var(--accent-light);
+  border-radius: 12px;
+  padding: 20px;
+  border-left: 5px solid var(--accent-color);
+  transition: var(--transition-smooth);
+  min-height: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-placeholder {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  text-align: center;
+  width: 100%;
+}
+
+.detail-content {
+  width: 100%;
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.detail-content h4 {
+  font-size: 1.15rem;
   color: var(--secondary-color);
+  margin-bottom: 8px;
+  font-weight: 700;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
-.map-card img {
-  width: 100%;
-  border-radius: 8px;
-  display: block;
-  object-fit: cover;
-  border: 1px solid rgba(0,0,0,0.05);
+.detail-content p {
+  font-size: 0.95rem;
+  color: var(--text-main);
+  line-height: 1.6;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* 時間軸設計 (Timeline) */
@@ -316,6 +462,29 @@ header p {
   box-shadow: 0 4px 10px rgba(184, 90, 56, 0.15);
 }
 
+/* 行動按鈕：官方網站 / 介紹 連結 */
+.btn-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #ffffff;
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  padding: 8px 16px;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.btn-link:hover {
+  background-color: var(--secondary-color);
+  color: #ffffff;
+  box-shadow: 0 4px 10px rgba(74, 59, 50, 0.15);
+}
+
 /* 貼心叮嚀網格 */
 .tips-grid {
   display: grid;
@@ -364,4 +533,101 @@ footer {
   font-size: 0.9rem;
   border-top: 1px solid rgba(74, 59, 50, 0.08);
   margin-top: 60px;
+}
+
+/* ==========================================
+   Tab 切換按鈕與靜態地圖樣式
+   ========================================== */
+.map-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  background: #ffffff;
+  color: var(--secondary-color);
+  border: 2px solid var(--accent-color);
+  border-radius: 30px;
+  padding: 10px 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.tab-btn.active, .tab-btn:hover {
+  background: var(--accent-color);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(244, 162, 97, 0.3);
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+.share-tip {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-bottom: 24px;
+  background: var(--accent-light);
+  padding: 8px 16px;
+  border-radius: 8px;
+  display: block;
+  border: 1px solid rgba(244, 162, 97, 0.2);
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.static-maps-container {
+  margin-top: 10px;
+}
+
+.map-showcase {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 900px) {
+  .map-showcase {
+    grid-template-columns: 1fr;
+  }
+}
+
+.map-card {
+  background: var(--card-bg);
+  border-radius: var(--border-radius);
+  padding: 20px;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(74, 59, 50, 0.05);
+  transition: var(--transition-smooth);
+}
+
+.map-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.map-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 12px;
+  color: var(--secondary-color);
+  font-weight: 700;
+}
+
+.map-card img {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid rgba(74, 59, 50, 0.08);
+  display: block;
 }
