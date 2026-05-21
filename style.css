@@ -536,7 +536,7 @@ footer {
 }
 
 /* ==========================================
-   Tab 切換按鈕與靜態地圖樣式
+   靜態行程圖樣式
    ========================================== */
 .map-tabs {
   display: flex;
@@ -594,14 +594,10 @@ footer {
 
 .map-showcase {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-
-@media (max-width: 900px) {
-  .map-showcase {
-    grid-template-columns: 1fr;
-  }
+  grid-template-columns: 1fr;
+  gap: 32px;
+  max-width: 980px;
+  margin: 0 auto;
 }
 
 .map-card {
@@ -619,8 +615,8 @@ footer {
 }
 
 .map-card h3 {
-  font-size: 1.15rem;
-  margin-bottom: 12px;
+  font-size: 1.25rem;
+  margin-bottom: 16px;
   color: var(--secondary-color);
   font-weight: 700;
 }

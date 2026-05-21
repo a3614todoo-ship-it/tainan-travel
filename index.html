@@ -28,116 +28,17 @@
 
         <!-- 行程路線地圖區 -->
         <section id="trip-maps">
-            <h2 class="section-title">🗺️ 自駕行程路線圖</h2>
-            
-            <!-- Tab 切換按鈕 -->
-            <div class="map-tabs">
-                <button class="tab-btn active" id="tab-interactive">📱 手機/線上互動地圖</button>
-                <button class="tab-btn" id="tab-static">💾 另存分享圖片 (LINE群組專用)</button>
-            </div>
-            
-            <!-- 內容 A: 互動地圖 -->
-            <div class="tab-content active" id="content-interactive">
-                <div class="interactive-map-container">
-                    <div class="map-instruction">💡 點擊或懸停於節點上，可檢視詳細時間與景點特色！</div>
-                    
-                    <div class="map-svg-wrapper">
-                        <!-- 使用 SVG 繪製一條精美的自駕路線 -->
-                        <svg viewBox="0 0 920 360" class="route-svg">
-                            <!-- 路線主線 (去程：台北->新竹->台中->嘉義->台南) -->
-                            <path d="M 50,140 C 120,120 160,150 240,140 C 320,130 380,180 460,170 C 540,160 580,220 680,210 C 760,200 800,240 870,240" fill="none" stroke="var(--primary-color)" stroke-width="5" stroke-linecap="round" class="route-line-go" />
-                            
-                            <!-- 路線回程線 (回程：台南->雲林古坑->新竹->台北) -->
-                            <path d="M 870,240 C 800,285 750,290 660,280 C 570,270 480,310 390,290 C 300,270 200,210 50,140" fill="none" stroke="var(--success-color)" stroke-width="3" stroke-dasharray="6,6" stroke-linecap="round" class="route-line-return" />
-                            
-                            <!-- 節點 1: 台北 (起點) -->
-                            <g class="map-node" data-title="台北 (週五 16:00 出發)" data-desc="🚗 避開下班尖峰車潮，準時從台北啟程，開始三天兩夜的家庭慢活自駕之旅。">
-                                <circle cx="50" cy="140" r="10" class="node-dot" />
-                                <circle cx="50" cy="140" r="18" class="node-pulse" />
-                                <text x="50" y="115" class="node-label">台北 (起點)</text>
-                            </g>
-                            
-                            <!-- 節點 2: 新竹 (週五晚餐) -->
-                            <g class="map-node" data-title="新竹 (週五 17:30 晚餐)" data-desc="🍴 抵達新竹吃晚餐，舒緩開車疲勞。推薦前往「草根廚房」享用招牌烤鴨（需預訂，好停車），或至「新竹巨城購物中心」，無障礙設施齊全且選擇多。">
-                                <circle cx="240" cy="140" r="8" class="node-dot" />
-                                <circle cx="240" cy="140" r="14" class="node-pulse" />
-                                <text x="240" y="115" class="node-label">新竹 (五·晚餐)</text>
-                            </g>
-                            
-                            <!-- 節點 3: 台中逢甲 -->
-                            <g class="map-node" data-title="台中逢甲 (週五 21:00 入住)" data-desc="🛌 抵達逢甲飯店辦理入住。特別提醒：逢甲夜市人潮擁擠，建議長輩在飯店休息，由年輕人代表外帶宵夜，避免長輩久站累倒。">
-                                <circle cx="460" cy="170" r="8" class="node-dot" />
-                                <circle cx="460" cy="170" r="14" class="node-pulse" />
-                                <text x="460" y="145" class="node-label">台中逢甲 (五·宿)</text>
-                            </g>
-                            
-                            <!-- 節點 4: 嘉義檜意森活村 -->
-                            <g class="map-node" data-title="嘉義檜意森活村 (週六 11:15 中繼)" data-desc="🌳 全台最大日式木造建築群，園區地勢平坦、無階梯與高低差，非常適合長輩散步。午餐推薦在日式老屋「森咖啡」享用輕食，或至有冷氣、好停車的「民主火雞肉飯」用餐。">
-                                <circle cx="680" cy="210" r="8" class="node-dot" />
-                                <circle cx="680" cy="210" r="14" class="node-pulse" />
-                                <text x="680" y="185" class="node-label">嘉義 (六·午餐)</text>
-                            </g>
-                            
-                            <!-- 節點 5: 國立臺灣歷史博物館 -->
-                            <g class="map-node" data-title="國立臺灣歷史博物館 (週六 14:45)" data-desc="🏛️ 全館無障礙與強冷氣開放，展出許多舊時雜貨店、舊火車站等擬真復古街景，最容易勾起長輩的回憶。服務台提供免付費輪椅登記借用。">
-                                <circle cx="780" cy="225" r="8" class="node-dot" />
-                                <circle cx="780" cy="225" r="14" class="node-pulse" />
-                                <text x="780" y="200" class="node-label">臺灣歷史博館</text>
-                            </g>
-                            
-                            <!-- 節點 6: 台南中西區 (目的地) -->
-                            <g class="map-node" data-title="台南海安路 / 市區古蹟 (週六晚餐 & 週日慢遊)" data-desc="🍲 週六 18:15 晚餐預訂了「海安路四季溫體牛肉火鍋」，湯底鮮美肉質嫩，車輛建議停在設有無障礙電梯直達路面的「海安路地下停車場」。週日 10:00 慢遊台灣文學館、林百貨（有復古電梯）與美術館2館。">
-                                <circle cx="870" cy="240" r="12" class="node-dot accent" />
-                                <circle cx="870" cy="240" r="20" class="node-pulse accent" />
-                                <text x="870" y="210" class="node-label main-dest">台南中西區</text>
-                            </g>
-                            
-                            <!-- 節點 7: 彰化八卦山大佛 -->
-                            <g class="map-node" data-title="彰化八卦山大佛 (週日 15:20 - 16:20)" data-desc="⛰️ 俯瞰彰化市景，懷舊地標。⚠️ 大佛前有階梯，請走斜坡。💡 可開車至停車場，極近大佛。">
-                                <circle cx="660" cy="280" r="8" class="node-dot success" />
-                                <circle cx="660" cy="280" r="14" class="node-pulse success" />
-                                <text x="660" y="310" class="node-label">八卦山大佛 (日·觀光)</text>
-                            </g>
-                            
-                            <!-- 節點 8: 新竹 (週日 18:00 晚餐) -->
-                            <g class="map-node" data-title="新竹 (週日 18:00 晚餐)" data-desc="🍴 北返的中繼晚餐。在草根廚房或巨城購物中心享用豐富晚餐，讓長輩在舒適有冷氣的環境下飽餐一頓，並充分休息、舒緩坐車疲累。">
-                                <circle cx="390" cy="290" r="8" class="node-dot success" />
-                                <circle cx="390" cy="290" r="14" class="node-pulse success" />
-                                <text x="390" y="320" class="node-label">新竹 (日·晚餐)</text>
-                            </g>
-                            
-                            <!-- 節點 9: 台北 (終點) -->
-                            <g class="map-node" data-title="台北 (週日 20:30 溫馨返家)" data-desc="🏠 約 20:30 順利返回台北溫暖的家，結束這趟不費體力、吃得滿足且充滿人文溫度的長輩慢活自駕之旅。">
-                                <circle cx="50" cy="140" r="6" class="node-dot success" />
-                                <text x="50" y="170" class="node-label">台北 (終點)</text>
-                            </g>
-                        </svg>
+            <h2 class="section-title">🗺️ 行程時間軸與路線圖</h2>
+            <div class="static-maps-container featured-maps">
+                <span class="share-tip">💡 兩張圖可直接另存，傳到 LINE 旅行群組；時間、車程與停留重點都已標在圖上。</span>
+                <div class="map-showcase">
+                    <div class="map-card" id="map-day-1-2">
+                        <h3>📅 週五、週六南下行程</h3>
+                        <img src="./tainan_trip_fri_sat_map.png" alt="週五與週六行程時間軸與路線圖">
                     </div>
-                    
-                    <!-- 顯示懸停細節的動態卡片 -->
-                    <div class="interactive-detail-card" id="detail-card">
-                        <div class="detail-placeholder">💡 請將滑鼠懸停在上方地圖節點上，或用手機點擊節點，可查看詳細行程與景點特色！</div>
-                        <div class="detail-content" style="display: none;">
-                            <h4 id="detail-title">景點名稱</h4>
-                            <p id="detail-desc">景點特色介紹</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- 內容 B: 靜態圖片地圖 -->
-            <div class="tab-content" id="content-static">
-                <div class="static-maps-container">
-                    <span class="share-tip">💡 提示：您可以<strong>長按圖片另存新檔</strong>，直接傳送到 LINE 旅行群組，長輩一目了然！</span>
-                    <div class="map-showcase">
-                        <div class="map-card" id="map-day-1-2">
-                            <h3>📅 第一天 & 第二天 (週五、週六行程)</h3>
-                            <img src="./tainan_trip_fri_sat_map.png" alt="週五與週六行程路線規劃圖">
-                        </div>
-                        <div class="map-card" id="map-day-3">
-                            <h3>📅 第三天 (週日行程)</h3>
-                            <img src="./tainan_trip_sun_map.png" alt="週日行程路線規劃圖">
-                        </div>
+                    <div class="map-card" id="map-day-3">
+                        <h3>📅 週日安平北返行程</h3>
+                        <img src="./tainan_trip_sun_map.png" alt="週日安平北返時間軸與路線圖">
                     </div>
                 </div>
             </div>
@@ -209,20 +110,20 @@
 
                 <!-- 🟢 週六 -->
                 <div class="day-block" id="day-saturday">
-                    <div class="day-header day-2">Day 2：週六 ➔ 嘉義人文中繼 ➔ 台南牛肉火鍋</div>
+                    <div class="day-header day-2">Day 2：週六 ➔ 嘉義檜意森活村 ➔ 臺灣歷史博物館 ➔ 台南牛肉火鍋</div>
 
                     <!-- 事件 3 -->
                     <div class="event-card" id="event-chiayi">
-                        <div class="event-time">⏰ 10:00 - 13:45</div>
+                        <div class="event-time">⏰ 08:30 - 13:45</div>
                         <div class="event-title">
-                            <span>中繼站：嘉義檜意森活村 (享用午餐)</span>
+                            <span>飯店早餐＋退房 ➔ 嘉義檜意森活村</span>
                             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                                 <a href="https://www.google.com/maps/search/?api=1&query=檜意森活村" target="_blank" class="btn-map" id="link-hinoki">📍 導航至檜意森活村</a>
                                 <a href="https://www.hinokivillage.com.tw/" target="_blank" class="btn-link" id="web-hinoki">🔗 園區官網</a>
                             </div>
                         </div>
                         <div class="event-desc">
-                            早上 10:00 從逢甲飯店退房出發，車程約 1 小時 15 分鐘。抵達嘉義後，在充滿日式懷舊風情的檜意森活村悠閒散步。
+                            08:30 在飯店早餐並整理行李，09:30 從台中逢甲出發，車程約 1 小時 45 分鐘。11:15 抵達嘉義後，在充滿日式懷舊風情的檜意森活村悠閒散步，12:45 於園區或鄰近雞肉飯店午餐。
                         </div>
                         <div class="feature-badge">
                             <i>🌳</i>
@@ -257,20 +158,25 @@
 
                     <!-- 事件 5 -->
                     <div class="event-card" id="event-checkin-hotpot">
-                        <div class="event-time">⏰ 17:00 - 20:15</div>
+                        <div class="event-time">⏰ 17:00 - 20:45</div>
                         <div class="event-title">
-                            <span>永康飯店 Check-in ➔ 四季溫體牛肉火鍋</span>
+                            <span>永康飯店 Check-in ➔ 葡吉取麵包 ➔ 四季溫體牛肉火鍋</span>
                             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                                <a href="https://www.google.com/maps/search/?api=1&query=葡吉麵包店+台南" target="_blank" class="btn-map" id="link-pucci">📍 導航至葡吉</a>
                                 <a href="https://www.google.com/maps/search/?api=1&query=四季溫體牛肉火鍋+海安路" target="_blank" class="btn-map" id="link-hotpot">📍 導航至火鍋店</a>
                                 <a href="https://www.facebook.com/shijibeefhotpot/" target="_blank" class="btn-link" id="web-hotpot">🔗 店家粉專</a>
                             </div>
                         </div>
                         <div class="event-desc">
-                            17:00 離開博物館，先回永康區的飯店 Check-in，讓長輩稍微休息、洗把臉。17:40 出發前往中西區海安路。
+                            17:00 離開博物館，約 17:30 抵達永康飯店 Check-in。17:50 從飯店出發前往葡吉取預定好的麵包（車程約 20 分鐘），18:10-18:25 取貨後再前往海安路四季溫體牛肉火鍋（車程約 10 分鐘）。火鍋訂位為 19:00，取貨後可保留停車、整理麵包與長輩上洗手間的緩衝時間，餐後返回飯店休息。
+                        </div>
+                        <div class="feature-badge" style="margin-top: 10px; background-color: hsl(45, 100%, 96%); border: 1px solid rgba(214, 161, 76, 0.25);">
+                            <i>🥖</i>
+                            <span><strong>葡吉取貨提醒：</strong>這段時間較緊，建議先電話確認取貨時段與品項，抵達時由一人下車快取，其他人留車上休息，避免長輩跟著下車久等。</span>
                         </div>
                         <div class="feature-badge">
                             <i>🍲</i>
-                            <span><strong>美食特色 (已訂位 18:15)：</strong> 享用台南指標性的溫體牛肉火鍋！沙茶扁魚湯底鮮美，溫體牛肉肉質極嫩，非常營養好入口。</span>
+                            <span><strong>美食特色 (已訂位 19:00)：</strong> 享用台南指標性的溫體牛肉火鍋！沙茶扁魚湯底鮮美，溫體牛肉肉質極嫩，非常營養好入口。</span>
                         </div>
                         <div class="feature-badge" style="margin-top: 10px; background-color: hsl(200, 30%, 96%); border: 1px solid rgba(70, 100, 120, 0.2);">
                             <i>🚗</i>
@@ -283,32 +189,25 @@
 
                 <!-- 🟢 週日 -->
                 <div class="day-block" id="day-sunday">
-                    <div class="day-header day-3">Day 3：週日 ➔ 台南市區人文慢遊 ➔ 古坑咖啡下午茶 ➔ 台北</div>
+                    <div class="day-header day-3">Day 3：週日 ➔ 安平樹屋與老街 ➔ 彰化八卦山大佛 ➔ 台北</div>
 
                     <!-- 事件 6 -->
                     <div class="event-card" id="event-tainan-city">
-                        <div class="event-time">⏰ 10:00 - 12:30</div>
+                        <div class="event-time">⏰ 08:30 - 11:50</div>
                         <div class="event-title">
-                            <span>市區古蹟人文慢遊</span>
+                            <span>安平樹屋 ➔ 安平老街 ➔ 舊李合興蜜餞</span>
                             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                                <a href="https://www.nmtl.gov.tw/" target="_blank" class="btn-link" id="web-literature">🔗 文學館官網</a>
-                                <a href="http://www.hayashi.com.tw/" target="_blank" class="btn-link" id="web-hayashi">🔗 林百貨官網</a>
-                                <a href="https://www.tnam.museum/" target="_blank" class="btn-link" id="web-tfam">🔗 美術館官網</a>
-                            </div>
-                            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px;">
-                                <a href="https://www.google.com/maps/search/?api=1&query=國立台灣文學館" target="_blank" class="btn-map" id="link-literature">📍 導航文學館</a>
-                                <a href="https://www.google.com/maps/search/?api=1&query=林百貨" target="_blank" class="btn-map" id="link-hayashi">📍 導航林百貨</a>
-                                <a href="https://www.google.com/maps/search/?api=1&query=台南市美術館2館" target="_blank" class="btn-map" id="link-tfam">📍 導航美術館2館</a>
+                                <a href="https://www.google.com/maps/search/?api=1&query=安平樹屋" target="_blank" class="btn-map" id="link-anping-tree">📍 導航安平樹屋</a>
+                                <a href="https://www.google.com/maps/search/?api=1&query=舊李合興蜜餞" target="_blank" class="btn-map" id="link-old-lih">📍 導航舊李合興</a>
+                                <a href="https://www.t2220915.com/pages/about.php" target="_blank" class="btn-link" id="web-old-lih">🔗 舊李合興</a>
                             </div>
                         </div>
                         <div class="event-desc">
-                            早上 9:30 退房後前往中西區古蹟人文區（車程約 20 分鐘）。這三個地標均在步行 3 分鐘範圍內，可依長輩體力自由搭配：
+                            08:30 在飯店早餐並退房，09:30 從永康飯店出發前往安平（車程約 25-30 分鐘）。10:00 抵達安平樹屋與德記洋行周邊，停留約 50 分鐘，感受老倉庫與榕樹盤根的安平歷史感。
                             <br><br>
-                            <strong>1. 國立台灣文學館：</strong>巴洛克風格百年古蹟，室內冷氣舒適、動線平緩且設有許多長輩休息座椅。
+                            10:50 從安平樹屋步行或短程移動至安平老街（約 5-10 分鐘）。10:50-11:50 逛延平街，重點採買「舊李合興蜜餞」，順路補買蝦餅、冬瓜茶或豆花。
                             <br>
-                            <strong>2. 林百貨：</strong>全台最老百貨，可搭乘復古指針電梯直達頂樓看神社，並購買台南精緻伴手禮。
-                            <br>
-                            <strong>3. 台南市美術館 2 館：</strong>白色現代美學建築，無障礙設施與電梯規劃極佳，適合散步看展。
+                            <strong>長輩友善提醒：</strong>安平老街週日人潮較多，建議只鎖定蜜餞與少量伴手禮，買完就移動到午餐餐廳坐下休息。
                         </div>
                     </div>
 
@@ -316,18 +215,18 @@
                     <div class="event-card" id="event-lunch">
                         <div class="event-time">⏰ 12:30 - 14:00</div>
                         <div class="event-title">
-                            <span>午餐：台南老字號精緻台菜</span>
+                            <span>午餐：安平附近舒適餐廳</span>
                             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                                <a href="https://www.google.com/maps/search/?api=1&query=筑馨居" target="_blank" class="btn-map" id="link-zhuxinju">📍 導航至筑馨居</a>
-                                <a href="https://www.facebook.com/profile.php?id=100063901768846" target="_blank" class="btn-link" id="web-zhuxinju">🔗 筑馨居粉專</a>
+                                <a href="https://www.google.com/maps/search/?api=1&query=涵花庭+安平" target="_blank" class="btn-map" id="link-hansgarden">📍 導航涵花庭</a>
+                                <a href="https://www.google.com/maps/search/?api=1&query=安平老街+午餐" target="_blank" class="btn-map" id="link-anping-lunch">📍 安平午餐備案</a>
                             </div>
                         </div>
                         <div class="event-desc">
-                            品嚐台南在地精緻的老屋辦桌菜或台菜料理。
+                            11:50 從安平老街前往午餐餐廳，安平區內車程多半約 5-15 分鐘。12:00-13:15 午餐，建議優先預訂「涵花庭 Han's Garden」這類環境舒適、座位穩、停車相對好處理的餐廳；若想吃在地小吃，則改成蝦捲、蚵仔煎、豆花等老街周邊小吃，但假日排隊與座位較不穩。
                         </div>
                         <div class="feature-badge">
                             <i>🏮</i>
-                            <span><strong>推薦店家（需預訂）：</strong> 推薦「<strong>筑馨居</strong>」的無菜單辦桌菜（百年老厝，食材軟嫩、口味經典且清淡不油膩）或「<strong>阿美飯店</strong>」的經典台菜，都是長輩會非常喜歡的口味。</span>
+                            <span><strong>關鍵提醒：</strong>週日 14:00 需要北返前往八卦山，午餐不宜拖太晚。建議 13:15 前吃完，保留上洗手間、整理伴手禮與上車時間。</span>
                         </div>
                     </div>
 
@@ -342,7 +241,7 @@
                             </div>
                         </div>
                         <div class="event-desc">
-                            午餐後北返，車程約 1 小時 40 分鐘抵達彰化。八卦山大佛是彰化最具代表性的地標，落成於 1961 年，高 22 公尺的釋迦牟尼佛像莊嚴壯觀，是許多長輩年輕時的旅遊回憶。站在大佛前方平台可俗瞰整個彰化平原，視野遼闊。
+                            13:15-14:00 為午餐後整理、上洗手間與移動緩衝。14:00 從安平出發北返，前往彰化八卦山大佛（車程約 1 小時 20 分鐘）。八卦山大佛是彰化最具代表性的地標，落成於 1961 年，高 22 公尺的釋迦牟尼佛像莊嚴壯觀，是許多長輩年輕時的旅遊回憶。站在大佛前方平台可俯瞰彰化平原，視野遼闊。
                         </div>
                         <div class="feature-badge">
                             <i>⛰️</i>
@@ -362,7 +261,7 @@
                             <a href="https://www.google.com/maps/search/?api=1&query=新竹草根廚房" target="_blank" class="btn-map" id="link-hsinchu-dinner">📍 導航至新竹草根廚房</a>
                         </div>
                         <div class="event-desc">
-                            離開八卦山大佛，出發前往新竹（車程約 1 小時 30 分鐘）。
+                            16:20 離開八卦山大佛，出發前往新竹（車程約 1 小時 25 分鐘）。
                         </div>
                         <div class="feature-badge">
                             <i>🚗</i>
@@ -372,7 +271,7 @@
 
                     <!-- 事件 10 -->
                     <div class="event-card" id="event-sun-dinner">
-                        <div class="event-time">⏰ 18:00 - 19:30</div>
+                        <div class="event-time">⏰ 17:45 - 19:15</div>
                         <div class="event-title">新竹晚餐：享用好料</div>
                         <div class="event-desc">
                             在新竹享用北返的美味晚餐。可以挑選適合長輩的台菜、中式料理或烤鴨餐館，或是巨城內冷氣充足且無障礙動線平緩的餐廳，讓長輩舒適地用餐與休憩，為旅途劃下美好句點。
@@ -381,10 +280,10 @@
 
                     <!-- 事件 11 -->
                     <div class="event-card" id="event-home">
-                        <div class="event-time">⏰ 19:30 - 20:30</div>
+                        <div class="event-time">⏰ 19:15 - 20:30</div>
                         <div class="event-title">新竹返回台北</div>
                         <div class="event-desc">
-                            最後一小段路，自新竹返回台北溫暖的家（車程約 1 小時），結束這趟貼心、不費體力又富含人文溫度的慢活之旅。
+                            最後一小段路，自新竹返回台北溫暖的家（車程約 1 小時 15 分鐘），預計 20:30 抵達，結束這趟貼心、不費體力又富含人文溫度的慢活之旅。
                         </div>
                     </div>
                 </div>
@@ -409,7 +308,7 @@
                     <div class="tip-icon">♿</div>
                     <div class="tip-content">
                         <h4>免付費無障礙設施</h4>
-                        <p>「國立臺灣歷史博物館」與「台南市美術館2館」皆設有完善無障礙通道，並提供免費輪椅登記借用。若長輩步行較累，建議多加利用。</p>
+                        <p>「國立臺灣歷史博物館」室內動線寬敞，安平樹屋與老街則建議縮短停留時間、避開久站。若長輩步行較累，優先找餐廳或咖啡座坐下休息。</p>
                     </div>
                 </div>
 
@@ -441,77 +340,6 @@
             <p style="font-size: 0.8rem; margin-top: 8px; opacity: 0.7;">本網站已準備就緒，可直接部署至 GitHub Pages 分享使用</p>
         </div>
     </footer>
-
-    <!-- 互動地圖 JS 邏輯 -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Tab 切換邏輯
-            const tabInteractive = document.getElementById('tab-interactive');
-            const tabStatic = document.getElementById('tab-static');
-            const contentInteractive = document.getElementById('content-interactive');
-            const contentStatic = document.getElementById('content-static');
-
-            if (tabInteractive && tabStatic && contentInteractive && contentStatic) {
-                tabInteractive.addEventListener('click', function() {
-                    tabInteractive.classList.add('active');
-                    tabStatic.classList.remove('active');
-                    contentInteractive.classList.add('active');
-                    contentStatic.classList.remove('active');
-                });
-
-                tabStatic.addEventListener('click', function() {
-                    tabStatic.classList.add('active');
-                    tabInteractive.classList.remove('active');
-                    contentStatic.classList.add('active');
-                    contentInteractive.classList.remove('active');
-                });
-            }
-
-            const mapNodes = document.querySelectorAll('.map-node');
-            const detailCard = document.getElementById('detail-card');
-            const placeholder = detailCard.querySelector('.detail-placeholder');
-            const content = detailCard.querySelector('.detail-content');
-            const titleElem = document.getElementById('detail-title');
-            const descElem = document.getElementById('detail-desc');
-
-            // 針對每個節點加入 Mouseenter 與 Click 事件
-            mapNodes.forEach(node => {
-                const showDetail = () => {
-                    const title = node.getAttribute('data-title');
-                    const desc = node.getAttribute('data-desc');
-                    
-                    titleElem.innerText = title;
-                    descElem.innerText = desc;
-                    
-                    placeholder.style.display = 'none';
-                    content.style.display = 'block';
-                    
-                    // 點亮該節點效果 (未來可配合 CSS 進一步美化)
-                    mapNodes.forEach(n => {
-                        const dot = n.querySelector('.node-dot');
-                        if (dot) dot.style.transform = 'scale(1)';
-                    });
-                    const currentDot = node.querySelector('.node-dot');
-                    if (currentDot) currentDot.style.transform = 'scale(1.3)';
-                };
-
-                node.addEventListener('mouseenter', showDetail);
-                node.addEventListener('click', showDetail);
-            });
-
-            // 預設選取台北起點
-            if (mapNodes.length > 0) {
-                const firstTitle = mapNodes[0].getAttribute('data-title');
-                const firstDesc = mapNodes[0].getAttribute('data-desc');
-                titleElem.innerText = firstTitle;
-                descElem.innerText = firstDesc;
-                placeholder.style.display = 'none';
-                content.style.display = 'block';
-                const currentDot = mapNodes[0].querySelector('.node-dot');
-                if (currentDot) currentDot.style.transform = 'scale(1.3)';
-            }
-        });
-    </script>
 
 </body>
 </html>
