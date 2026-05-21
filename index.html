@@ -34,11 +34,17 @@
                 <div class="map-showcase">
                     <div class="map-card" id="map-day-1-2">
                         <h3>📅 週五、週六南下行程</h3>
-                        <img src="./tainan_trip_fri_sat_map.png" alt="週五與週六行程時間軸與路線圖">
+                        <button class="map-preview-btn" type="button" data-full="./tainan_trip_fri_sat_map.png" data-title="週五、週六南下行程">
+                            <img src="./tainan_trip_fri_sat_map.png" alt="週五與週六行程時間軸與路線圖">
+                            <span>點擊放大查看</span>
+                        </button>
                     </div>
                     <div class="map-card" id="map-day-3">
                         <h3>📅 週日安平北返行程</h3>
-                        <img src="./tainan_trip_sun_map.png" alt="週日安平北返時間軸與路線圖">
+                        <button class="map-preview-btn" type="button" data-full="./tainan_trip_sun_map.png" data-title="週日安平北返行程">
+                            <img src="./tainan_trip_sun_map.png" alt="週日安平北返時間軸與路線圖">
+                            <span>點擊放大查看</span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -110,7 +116,7 @@
 
                 <!-- 🟢 週六 -->
                 <div class="day-block" id="day-saturday">
-                    <div class="day-header day-2">Day 2：週六 ➔ 嘉義檜意森活村 ➔ 臺灣歷史博物館 ➔ 台南牛肉火鍋</div>
+                    <div class="day-header day-2">Day 2：週六 ➔ 嘉義檜意森活村 ➔ 奇美幸福工廠 ➔ 葡吉與台南牛肉火鍋</div>
 
                     <!-- 事件 3 -->
                     <div class="event-card" id="event-chiayi">
@@ -138,21 +144,21 @@
                     </div>
 
                     <!-- 事件 4 -->
-                    <div class="event-card" id="event-nmth">
-                        <div class="event-time">⏰ 14:45 - 17:00</div>
+                    <div class="event-card" id="event-chimei-factory">
+                        <div class="event-time">⏰ 15:05 - 16:35</div>
                         <div class="event-title">
-                            <span>國立臺灣歷史博物館</span>
+                            <span>奇美食品幸福工廠</span>
                             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-                                <a href="https://www.google.com/maps/search/?api=1&query=國立臺灣歷史博物館" target="_blank" class="btn-map" id="link-nmth">📍 導航至歷史博物館</a>
-                                <a href="https://www.nmth.gov.tw/" target="_blank" class="btn-link" id="web-nmth">🔗 博物館官網</a>
+                                <a href="https://www.google.com/maps/search/?api=1&query=奇美食品幸福工廠" target="_blank" class="btn-map" id="link-chimei-factory">📍 導航至幸福工廠</a>
+                                <a href="https://www.happychimei.com.tw/visitInfo.php" target="_blank" class="btn-link" id="web-chimei-factory">🔗 幸福工廠官網</a>
                             </div>
                         </div>
                         <div class="event-desc">
-                            車程約 50 分鐘。前往位於台南安南區（臨近永康）的歷史博物館，館內展示臺灣歷史常民文化，有許多早期雜貨店、舊車站街景的精彩擬真重現。
+                            13:45 從嘉義出發，前往奇美食品幸福工廠（車程約 1 小時 20 分鐘）。15:05-16:35 採輕鬆參觀，以品牌故事、食品展示、伴手禮採買與館內休息為主。
                         </div>
                         <div class="feature-badge">
-                            <i>🏛️</i>
-                            <span><strong>人文與無障礙特色：</strong> 全館強冷氣開放，動線極寬敞平緩。館內有許多懷舊舊物能喚起長輩的青春回憶。<strong>館內服務台可免費登記借用輪椅</strong>，設有充足的無障礙電梯與洗手間。</span>
+                            <i>🥟</i>
+                            <span><strong>景點特色：</strong> 食品觀光工廠、奇美包子水餃品牌故事與伴手禮採買，室內停留比戶外輕鬆。因晚上還有葡吉與火鍋，建議當作「短停＋休息＋採買」景點。</span>
                         </div>
                     </div>
 
@@ -160,7 +166,7 @@
                     <div class="event-card" id="event-checkin-hotpot">
                         <div class="event-time">⏰ 17:00 - 20:45</div>
                         <div class="event-title">
-                            <span>永康飯店 Check-in ➔ 葡吉取麵包 ➔ 四季溫體牛肉火鍋</span>
+                            <span>奇美幸福工廠 ➔ 葡吉取麵包 ➔ 四季溫體牛肉火鍋 ➔ 永康飯店</span>
                             <div style="display: flex; gap: 8px; flex-wrap: wrap;">
                                 <a href="https://www.google.com/maps/search/?api=1&query=葡吉麵包店+台南" target="_blank" class="btn-map" id="link-pucci">📍 導航至葡吉</a>
                                 <a href="https://www.google.com/maps/search/?api=1&query=四季溫體牛肉火鍋+海安路" target="_blank" class="btn-map" id="link-hotpot">📍 導航至火鍋店</a>
@@ -168,11 +174,11 @@
                             </div>
                         </div>
                         <div class="event-desc">
-                            17:00 離開博物館，約 17:30 抵達永康飯店 Check-in。17:50 從飯店出發前往葡吉取預定好的麵包（車程約 20 分鐘），18:10-18:25 取貨後再前往海安路四季溫體牛肉火鍋（車程約 10 分鐘）。火鍋訂位為 19:00，取貨後可保留停車、整理麵包與長輩上洗手間的緩衝時間，餐後返回飯店休息。
+                            16:35 離開奇美食品幸福工廠，直接前往葡吉取預定好的麵包（車程約 25-30 分鐘）。17:05-17:25 取貨後前往海安路地下停車場（車程約 5-10 分鐘），17:35-19:00 保留停車、整理麵包、長輩上洗手間與附近休息的緩衝。19:00 四季溫體牛肉火鍋，晚餐後再回永康飯店 Check-in 與休息。
                         </div>
                         <div class="feature-badge" style="margin-top: 10px; background-color: hsl(45, 100%, 96%); border: 1px solid rgba(214, 161, 76, 0.25);">
                             <i>🥖</i>
-                            <span><strong>葡吉取貨提醒：</strong>這段時間較緊，建議先電話確認取貨時段與品項，抵達時由一人下車快取，其他人留車上休息，避免長輩跟著下車久等。</span>
+                            <span><strong>葡吉取貨提醒：</strong>行李會先放車上，貴重物品請隨身或收進後車廂。抵達葡吉時建議一人下車快取，其他人留車上休息，避免長輩跟著下車久等。</span>
                         </div>
                         <div class="feature-badge">
                             <i>🍲</i>
@@ -308,7 +314,7 @@
                     <div class="tip-icon">♿</div>
                     <div class="tip-content">
                         <h4>免付費無障礙設施</h4>
-                        <p>「國立臺灣歷史博物館」室內動線寬敞，安平樹屋與老街則建議縮短停留時間、避開久站。若長輩步行較累，優先找餐廳或咖啡座坐下休息。</p>
+                        <p>奇美食品幸福工廠與安平樹屋都建議抓重點短逛，不硬走完整園區。若長輩步行較累，優先找館內座椅、餐廳或咖啡座坐下休息。</p>
                     </div>
                 </div>
 
@@ -333,6 +339,24 @@
 
     </main>
 
+    <div class="map-lightbox" id="map-lightbox" aria-hidden="true">
+        <div class="map-lightbox-backdrop" data-close-lightbox></div>
+        <div class="map-lightbox-dialog" role="dialog" aria-modal="true" aria-labelledby="map-lightbox-title">
+            <div class="map-lightbox-header">
+                <h3 id="map-lightbox-title">行程圖</h3>
+                <div class="map-lightbox-tools" aria-label="圖片縮放控制">
+                    <button type="button" id="map-zoom-out" aria-label="縮小行程圖">−</button>
+                    <button type="button" id="map-zoom-reset">100%</button>
+                    <button type="button" id="map-zoom-in" aria-label="放大行程圖">＋</button>
+                </div>
+                <button class="map-lightbox-close" type="button" aria-label="關閉放大圖" data-close-lightbox>×</button>
+            </div>
+            <div class="map-lightbox-body">
+                <img id="map-lightbox-img" src="" alt="">
+            </div>
+        </div>
+    </div>
+
     <!-- 頁尾 -->
     <footer>
         <div class="container">
@@ -340,6 +364,78 @@
             <p style="font-size: 0.8rem; margin-top: 8px; opacity: 0.7;">本網站已準備就緒，可直接部署至 GitHub Pages 分享使用</p>
         </div>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const lightbox = document.getElementById('map-lightbox');
+            const lightboxImg = document.getElementById('map-lightbox-img');
+            const lightboxTitle = document.getElementById('map-lightbox-title');
+            const lightboxBody = document.querySelector('.map-lightbox-body');
+            const zoomInButton = document.getElementById('map-zoom-in');
+            const zoomOutButton = document.getElementById('map-zoom-out');
+            const zoomResetButton = document.getElementById('map-zoom-reset');
+            const previewButtons = document.querySelectorAll('.map-preview-btn');
+            const closeButtons = document.querySelectorAll('[data-close-lightbox]');
+            let currentZoom = 1;
+
+            const applyZoom = () => {
+                lightboxImg.style.width = `${Math.round(currentZoom * 100)}%`;
+                zoomResetButton.textContent = `${Math.round(currentZoom * 100)}%`;
+            };
+
+            const closeLightbox = () => {
+                lightbox.classList.remove('active');
+                lightbox.setAttribute('aria-hidden', 'true');
+                lightboxImg.setAttribute('src', '');
+                document.body.classList.remove('lightbox-open');
+                currentZoom = 1;
+                applyZoom();
+            };
+
+            previewButtons.forEach((button) => {
+                button.addEventListener('click', () => {
+                    const src = button.getAttribute('data-full');
+                    const title = button.getAttribute('data-title') || '行程圖';
+                    const alt = button.querySelector('img')?.getAttribute('alt') || title;
+                    lightboxImg.setAttribute('src', src);
+                    lightboxImg.setAttribute('alt', alt);
+                    lightboxTitle.textContent = title;
+                    currentZoom = 1;
+                    applyZoom();
+                    lightbox.classList.add('active');
+                    lightbox.setAttribute('aria-hidden', 'false');
+                    document.body.classList.add('lightbox-open');
+                    lightboxBody.scrollTop = 0;
+                    lightboxBody.scrollLeft = 0;
+                });
+            });
+
+            zoomInButton.addEventListener('click', () => {
+                currentZoom = Math.min(2.5, currentZoom + 0.25);
+                applyZoom();
+            });
+
+            zoomOutButton.addEventListener('click', () => {
+                currentZoom = Math.max(0.75, currentZoom - 0.25);
+                applyZoom();
+            });
+
+            zoomResetButton.addEventListener('click', () => {
+                currentZoom = 1;
+                applyZoom();
+            });
+
+            closeButtons.forEach((button) => {
+                button.addEventListener('click', closeLightbox);
+            });
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && lightbox.classList.contains('active')) {
+                    closeLightbox();
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>

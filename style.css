@@ -594,10 +594,16 @@ footer {
 
 .map-showcase {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 32px;
-  max-width: 980px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  max-width: 900px;
   margin: 0 auto;
+}
+
+@media (max-width: 820px) {
+  .map-showcase {
+    grid-template-columns: 1fr;
+  }
 }
 
 .map-card {
@@ -621,9 +627,133 @@ footer {
   font-weight: 700;
 }
 
-.map-card img {
+.map-preview-btn {
   width: 100%;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: zoom-in;
+  position: relative;
+  display: block;
+  text-align: left;
+}
+
+.map-preview-btn img {
+  width: 100%;
+  max-height: 360px;
+  object-fit: cover;
+  object-position: top center;
   border-radius: 8px;
   border: 1px solid rgba(74, 59, 50, 0.08);
   display: block;
+}
+
+.map-preview-btn span {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  background: rgba(44, 59, 50, 0.86);
+  color: #ffffff;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.map-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.map-lightbox.active {
+  display: flex;
+}
+
+.map-lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 17, 14, 0.72);
+  backdrop-filter: blur(4px);
+}
+
+.map-lightbox-dialog {
+  position: relative;
+  width: min(1120px, 96vw);
+  max-height: 92vh;
+  background: #fffaf0;
+  border-radius: 12px;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+.map-lightbox-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 16px;
+  background: var(--secondary-color);
+  color: #ffffff;
+}
+
+.map-lightbox-header h3 {
+  font-size: 1rem;
+  margin: 0;
+}
+
+.map-lightbox-tools {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.map-lightbox-tools button {
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  min-width: 42px;
+  height: 34px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.map-lightbox-close {
+  border: 0;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.map-lightbox-body {
+  max-height: calc(92vh - 58px);
+  overflow: auto;
+  background: #fffaf0;
+  text-align: center;
+}
+
+.map-lightbox-dialog img {
+  display: inline-block;
+  width: 100%;
+  max-width: none;
+  object-fit: initial;
+  background: #fffaf0;
+  transform-origin: top center;
+}
+
+body.lightbox-open {
+  overflow: hidden;
 }
